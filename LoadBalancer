@@ -1,0 +1,27 @@
+SET UP LOAD balancer SERVER on CentOS_server
+    Run nmtui to change the hostname for webservers and loadbalencer server
+    Stop firewall 
+        systemctl stop firewalld
+        systemctl disable firewalld
+    and disable selinux
+        vi /etc/selinux/config
+        reboot
+    set up webservers
+        install apache (httpd) and start daemon
+        cd /var/www/html and vim index.html
+    set up load balancer
+        instal haproxy 
+        then start and enable daemon
+        cd /etc/haproxy/
+        vim config (default conf or given by company)
+            Frontend main to specify listening port (frontend main *:8080) 
+                also edit statistics to monitor webservers
+                default_backend
+                (stats enable, auth admin:password, hide-version, show-node, refresh 60s, url /haproxy?stats)
+            desactivate all backend static 
+            Round robin balancing to check if server is active before sending traffic
+                backend app 
+                    balance roundrobin(servers equal) (other scheduling algorithms: least-connection(fewer active connection), source(same server), first(maxconn value), URL parameter(for http backend), header )
+                    server webserver1 ip:80 check
+                    server webserver2 ip:80 check
+            restart haproxy daemon
