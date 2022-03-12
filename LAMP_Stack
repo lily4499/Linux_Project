@@ -1,0 +1,37 @@
+DEPLOY LAMP STACK (WEB_BASED APPLICATION) on CENTOS 7
+    The LAMP stack is a combination of software that is required on your server 
+    so that you can host dynamic websites built on PHP, such as WordPress
+    Install apache
+        yum install httpd
+        systemctl enable httpd
+        firewall-cmd --permanent --add-port=80/tcp
+        systemctl start httpd
+    install MySQL
+        yum install mariadb -y
+        systemctl start mariadb
+        systemctl enable mariadb
+        mysql_secure_installation
+        mysql -u root -p
+        mysql> show database;
+        mysql> create database DB_name;
+        mysql> create user username@localhost identified by 'passwd';
+        mysql> grant all privileges on DB_name.* to username@localhost identified by 'passwd';
+        mysql> flush privileges;
+        mysql> exit
+    Intall PHP
+        yum install php php-mysql php-gd -y
+        cd /var/www/html
+        vim info.php (<?php  phpinfo();  ?>)
+        systemctl httpd restart
+        on browser:  IP:80/info.php
+    We can set up wordpress
+        cd /tmp
+        wget http://wordpress.org/wordpress-5.1.1.tar.gz
+        tar -xvzf wordpress-5.1.1..tar.gz
+        cp -r wordpress/* /var/www/html/
+        cd /var/www/html/
+        mkdir /var/www/html/wp-content/uploads
+        cp wp-config-sample.php  wp-config.php
+        vim wp-config.php
+        chown -R apache:apache /var/www/html/*
+        service httpd restart
