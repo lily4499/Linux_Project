@@ -1,0 +1,24 @@
+CHECK CHARACTERISTIC OF A Linux SERVER THAT NEED TO BE DECOMMISSIONED
+To do that , we run some commands:   
+    
+$ lsblk  	-> to display the size of the hard drive with all the partitions		
+
+$ lscpu 
+$ nproc 
+$ cat /proc/cpuinfo	  -> to display the characteristic of the cpu	
+
+$ free -m  
+$ top  
+$ free -g 
+$ cat /proc/meminfo	  -> to check the memory		
+
+$ cat /etc/*release	  -> to check the OS version of your Linux server	
+
+$ uname -r  
+$ uname -a  
+$ iostat  
+$ cat /proc/version	   ->  to check the Kernel version
+
+$ uname -m 
+$ arch  
+$ getconf LONG_BIT	  ->  to print the computer architecture		
