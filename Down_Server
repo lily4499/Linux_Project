@@ -24,7 +24,7 @@ Troubleshoot down server
     Configuration Directories for Nginx is: /etc/nginx/
     to check the configuration syntax of your files.: apache2ctl -t ; httpd -t ; nginx -t
 
-    Step 5 : Is your Database back-end running Fine
+    Step 5 : Is Database back-end running Fine
     If you have configured your site to connect with database back-end like MySQL, PostreSQL, MongoDB, etc. 
     service mysql status
     service mysqld status
@@ -32,7 +32,7 @@ Troubleshoot down server
     Alternately you can also verify with below netstat command
     netstat -ntlp | grep mysql
 
-    Step 6 : Verify if your Web/App server is able to connect to Database backend
+    Step 6 : Verify if Web/App server is able to connect to Database backend
     The configuration file is located in wp-config.php file.
     Need to check that the DB_NAME, DB_USER, and DB_PASSWORD are correct 
     You can test whether the file has the correct information 
