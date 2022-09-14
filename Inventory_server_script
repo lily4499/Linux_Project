@@ -100,8 +100,7 @@
 # a summary of inventory
     echo -e "\nA summary of inventory\n"
     inxi
-    echo
-    sleep 2
-
+    
+    
 
 
