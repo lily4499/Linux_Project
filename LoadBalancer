@@ -10,7 +10,7 @@ SET UP LOAD balancer SERVER on CentOS_server
         install apache (httpd) and start daemon
         cd /var/www/html and vim index.html
     set up load balancer
-        instal haproxy 
+        install haproxy 
         then start and enable daemon
         cd /etc/haproxy/
         vim config (default conf or given by company)
