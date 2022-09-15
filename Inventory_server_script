@@ -1,3 +1,14 @@
+Prerequisite:
+Server Linux
+    create a folder
+    cd to that folder
+    create a file with .sh extension
+    Give to that file execute permission  : chmod +x file_name.sh
+    vim in that file
+    Then type your script as below
+    
+
+
 #!/bin/bash
 
 
@@ -101,6 +112,10 @@
     echo -e "\nA summary of inventory\n"
     inxi
     
+    
+    Once you are done typing your script, 
+    Save file and quit:  Press the escape key, type :wq , hit enter.
+    Then execute the script : ./file_name.sh
     
 
 
