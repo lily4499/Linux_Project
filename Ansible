@@ -1,0 +1,69 @@
+Using an Ansible playbook to manage workstation and server updates
+Install Ansible on CentOS Server to Automate Linux Server Deployments. 
+Do you have a growing number of Linux servers to take care of?
+
+
+Install ansible
+  sudo -i
+  yum update
+  yum install ansible
+  cd /etc/ansible the type ansible --version to check installation
+  
+  
+Configure Ansible to access the target servers
+  vim hosts
+    [web]
+    172.17.0.5
+    [dbserver]
+    172.17.0.3
+  ansible web -m ping
+  ansible dbserver -m ping
+  if we get permission denied, Configure ansible user with his password
+  Then give his credentials to the target server
+  vim hosts
+    [web]
+    Target 1 ansible_host=172.17.0.5 ansible_ssh_user=root ansible_ssh_pass=************
+    [dbserver]
+    Target 2 ansible_host=172.17.0.3 ansible_ssh_user=root ansible_ssh_pass=************
+  ansible all -m ping
+  
+  ansible all -m shell -a "cat /etc/*release"
+  
+  
+  
+  Write playbooks in YAML format
+  
+  ---
+  - name: update web servers
+    hosts: web
+    remote user: root
+    
+    tasks:
+    - name: ensure apache is at the latest version
+      yum:
+        name: httpd
+        state: latest
+    - name: write tha apache config file
+      template:
+        src: /srv/httpd.J2
+        dest: /etc/httpd.conf
+        
+ - name: update db server
+   hosts: dbserver
+   remote_user: root
+   
+   tasks:
+   - name: ensure postgresql is at the latest version
+     yum:
+       name: postgresql
+       state: latest
+   - name: ensure that postgresql is started
+     service:
+        name: postgrasql
+        state: started
+      
+      
+      
+   Run playbook
+      ansible-playbook file_name.yml  --syntax
+ 
